@@ -1,0 +1,6 @@
+Mar 26, 2023 10:21:29 PM com.webservices.VerdunServer main
+INFO: ----Logger for Verdun Server----
+Mar 26, 2023 10:24:40 PM com.webservices.VerdunServer main
+INFO: ----Logger for Verdun Server----
+Mar 26, 2023 10:26:01 PM com.webservices.VerdunServer main
+INFO: ----Logger for Verdun Server----

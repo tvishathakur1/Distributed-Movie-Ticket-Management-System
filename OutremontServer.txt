@@ -1,0 +1,4 @@
+Mar 26, 2023 10:24:41 PM com.webservices.OutremontServer main
+INFO: ----Logger for Outremont Server----
+Mar 26, 2023 10:26:01 PM com.webservices.OutremontServer main
+INFO: ----Logger for Outremont Server----
