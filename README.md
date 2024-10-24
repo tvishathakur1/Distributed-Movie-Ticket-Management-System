@@ -43,7 +43,7 @@ The architecture is designed to ensure high availability and fault tolerance thr
 4. **Data Consistency**: Ensures all replicas maintain consistent states.
 5. **Dynamic Timeout**: Adjusts timeouts based on server performance for better fault detection.
 
-![Architecture Design](https://github.com/user-attachments/assets/4d52060b-807d-4b17-8579-4b5355c7c648)
+<img src="https://github.com/user-attachments/assets/4d52060b-807d-4b17-8579-4b5355c7c648" alt="Architecture Design" style="width: 500; height: 300;">
 
 
 ## Recovery
