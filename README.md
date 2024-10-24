@@ -1,13 +1,13 @@
-# Distributed Movie Ticket Management System Using Web Services
+# Distributed Movie Show Management System
 
-This project is a **Distributed Movie Ticket Booking System (DMTBS)** that I developed to manage movie tickets across multiple theaters using web services. The system includes both admin and customer functionalities, providing a robust solution for booking and managing movie tickets.
+This project is a **Distributed Movie Ticket Booking System** that I developed to manage movie tickets across multiple theaters using web services. The system includes both admin and customer functionalities, providing a robust solution for booking and managing movie tickets.
 
 ## Table of Contents
 - [Overview](#overview)
+- [Technologies Used](#technologies-used)
 - [Architecture](#architecture)
 - [Features](#features)
 - [Recovery](#recovery)
-- [Technologies Used](#technologies-used)
 
 ## Overview
 
@@ -16,6 +16,12 @@ The system manages movie tickets across theaters and each theater streams differ
 Users interact with the system in two roles:
 - **Admin**: Can add/remove movie slots, and list available shows.
 - **Customer**: Can book/cancel tickets and view booking schedules.
+
+## Technologies Used
+
+- **Java** for implementing the server-client communication.
+- **Web Services** for the communication between components.
+- **UDP Multicast** for distributing requests reliably across replicas.
 
 ## Architecture
 
@@ -47,10 +53,4 @@ If a replica gives three incorrect responses, it will be replaced by a backup re
 
 ### Crash Recovery
 In case of a crash, the system automatically restarts the crashed replica using a shell script, ensuring continued operation.
-
-## Technologies Used
-
-- **Java** for implementing the server-client communication.
-- **Web Services** for the communication between components.
-- **UDP Multicast** for distributing requests reliably across replicas.
 
