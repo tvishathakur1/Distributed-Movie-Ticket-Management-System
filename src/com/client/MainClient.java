@@ -94,26 +94,6 @@ public class MainClient {
             LoggerInfo userLogger) {
         System.out.println("Enter the operation you would like to perform: ");
         try {
-            
-            // URL url = null;
-            // QName qName = null;
-            // switch (serverName) {
-            //     case "Atwater":
-            //     url = new URL("http://localhost:8080/atwater?wsdl");
-            //     qName = new QName("http://webservices.com/", "FrontendInterfaceImplService");
-            //     break;
-
-            //     case "Verdun":
-            //     url = new URL("http://localhost:8081/verdun?wsdl");
-            //     qName = new QName("http://webservices.com/", "FrontendInterfaceImplService");
-            //     break;
-
-            //     case "Outremont":
-            //     url = new URL("http://localhost:8082/outremont?wsdl");
-            //     qName = new QName("http://webservices.com/", "FrontendInterfaceImplService");
-            //     break;
-                
-            // }
 
             URL url = new URL("http://localhost:8080/frontend?wsdl");
             QName qName = new QName("http://webservices.com/", "FrontendInterfaceImplService");
@@ -223,13 +203,6 @@ public class MainClient {
                                         "MOVIE - " + movieNameStr + " ID - " + id + " TICKETS BOOKED - " + tickets2);
                             }
                         }
-
-                        // System.out.println("Bookings for the client are "+ bookingsResultForClient);
-                        // String[] bookingResults = bookingsResultForClient.split(";");
-                        // System.out.println("Size after splitting "+bookingResults.length);
-                        // for(String s:bookingResults) {
-                        // System.out.println(s);
-                        // }
                         break;
 
                     case 6:
@@ -294,35 +267,23 @@ public class MainClient {
                         String bookingsResultForClient = helloService.getBookingSchedule(customerID, true);
                         System.out.println("Bookings for the user are " + bookingsResultForClient);
 
-                        // String[] bookingResults = bookingsResultForClient.split(";"); COMMA
                         String[] bookingResults = bookingsResultForClient.split(",");
-                        // System.out.println("result size - "+bookingResults.length+" and result as
-                        // array = "+bookingResults);
                         if (bookingsResultForClient.equals("") || bookingsResultForClient == null) {
                             System.out.println("There are no bookings for the user.");
                         } else {
-                            // String[] moviesPrint; String[]
                             for (String s : bookingResults) {
-                                // System.out.println("s is - "+s);
                                 String[] movieName = s.split("_");
                                 String movieNameStr = movieName[0];
-                                // System.out.println("Movie name is - "+movieNameStr);
                                 String idTickets = movieName[1];
-                                // System.out.println("for a movie id and tickets - "+idTickets);
                                 String[] idTicketsArr = idTickets.split("-");
 
                                 for (String idTicketStr : idTicketsArr) {
-                                    // System.out.println("id&ticket -- "+idTicketStr);
                                     String onlyId = idTicketStr.split("/")[0];
                                     String onlyTickets = idTicketStr.split("/")[1];
                                     System.out.println("MOVIE - " + movieNameStr + " ID - " + onlyId + " TICKETS - "
                                             + onlyTickets);
                                 }
 
-                                // String id = idTicketsArr[0];
-                                // String tickets = idTicketsArr[1];
-                                // System.out.println("MOVIE - "+movieNameStr+" ID - "+id+" TICKETS BOOKED -
-                                // "+tickets);
                             }
                         }
 
