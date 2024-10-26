@@ -5,43 +5,33 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+import javax.jws.soap.SOAPBinding.Style;
+import javax.xml.ws.Endpoint;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+import com.request.*;
 
 public class Frontend {
     public static final String sequencerIP = "192.168.137.89";
     public static final int sequencerPort = 2233;
 
     public static void main(String[] args) {
-            DatagramSocket aSocket = null;
-        try {
-            aSocket = new DatagramSocket(2234);
-            String dataFromClient = "Hello from FE";
-            byte[] message = dataFromClient.getBytes();
-            InetAddress aHost = InetAddress.getByName(sequencerIP);
-            DatagramPacket requestToSequencer = new DatagramPacket(message, dataFromClient.length(), aHost, sequencerPort);
+            FrontendImpl feImpl = new FrontendImpl();
+        Endpoint endpoint = Endpoint.publish("http://localhost:8080/frontend?wsdl", feImpl);
+        System.out.println("Frontend server is published: " + endpoint.isPublished());
 
-            aSocket.send(requestToSequencer);
+        //TODO: Assign port numbers to all devices
+        Runnable thread1 = new FrontendThread(44553, feImpl); //this port is frontend's
 
-            aSocket.setSoTimeout(1000);
-            // Set up an UPD packet for recieving
-            byte[] buffer = new byte[1000];
-            DatagramPacket response = new DatagramPacket(buffer, buffer.length);
-            // Try to receive the response from the ping
-            aSocket.receive(response);
-            String sentence = new String(response.getData(), 0,
-                    response.getLength());
-            System.out.println("FE:sendUnicastToSequencer/ResponseFromSequencer>>>" + sentence);
-            // int sequenceID = Integer.parseInt(sentence.trim());
-            // System.out.println("FE:sendUnicastToSequencer/ResponseFromSequencer>>>SequenceID:" + sequenceID);
-        } catch (SocketException e) {
-            // System.out.println("Failed: " + requestFromClient.noRequestSendError());
-            System.out.println("Socket: " + e.getMessage());
-        } catch (IOException e) {
-            // System.out.println("Failed: " + requestFromClient.noRequestSendError());
-            e.printStackTrace();
-            System.out.println("IO: " + e.getMessage());
-        } finally {
-            if (aSocket != null)
-                aSocket.close();
-        }
+
+
+        Executor executor = Executors.newFixedThreadPool(1);
+        executor.execute(thread1);
     }
 }
