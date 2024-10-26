@@ -4,15 +4,18 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 
+import com.request.RequestData;
+
 @WebService
 @SOAPBinding(style=Style.RPC)
 public interface FrontendInterface {
 
-    public String addMovieSlots(String customerID, String movieID, String movieName, int bookingCapacity);
-    public String removeMovieSlots(String customerID, String movieID, String movieName);
-    public String listMovieShowsAvailability(String movieName, boolean isOwnClient);
-    public String bookMovieTickets(String customerID, String movieID, String movieName, int numberOfTickets, boolean isOwnClient);
-    public String getBookingSchedule(String customerID, boolean isOwnClient);
-    public String cancelMovieTickets(String customerID, String movieID, String movieName, int numberOfTickets);
-    public String exchangeTickets(String customerID, String oldMovieName, String movieID, String newMovieID, String newMovieName, int numberOfTickets);
+    String addMovieSlots(String customerID, String movieID, String movieName, int bookingCapacity);
+    String removeMovieSlots(String customerID, String movieID, String movieName);
+    String listMovieShowsAvailability(String customerID, String movieName, boolean isOwnClient);
+    String bookMovieTickets(String customerID, String movieID, String movieName, int numberOfTickets, boolean isOwnClient);
+    String getBookingSchedule(String customerID, boolean isOwnClient);
+    String cancelMovieTickets(String customerID, String movieID, String movieName, int numberOfTickets);
+    String exchangeTickets(String customerID, String oldMovieName, String movieID, String newMovieID, String newMovieName, int numberOfTickets);
+    void sendRequestToSequencer(RequestData requestData);
 }
